@@ -1,0 +1,40 @@
+﻿@using backoffice.Models
+@model BookViewModel
+@{
+    ViewData["Title"] = (!Model.Id.HasValue ? "Criar" : "Editar") + " livro";
+}
+
+@section scripts {
+    <script>
+        var bookId = '@ViewBag.BookId';
+    </script>
+    <script src="~/Scripts/book/book-create.js"></script>
+}
+
+<div class="">
+    <div class="row">
+        <h1>@(ViewData["Title"])</h1>
+    </div>
+    <hr />
+    <form id="form1" class="form1" method="post" data-bind="with: Book">
+        <div class="form-group">
+            <label class="control-label">Código</label>
+            <input type="text" id="Code" name="Code" class="form-control" data-bind="value: code" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Nome</label>
+            <input type="text" id="Name" name="Name" class="form-control" data-bind="value: name" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Quantidade</label>
+            <input type="text" id="Count" name="Count" class="form-control" data-bind="value: count" />
+        </div>
+
+        <div class="form-group">
+            <button id="btnSubmit" class="btn btn-primary" data-bind="click: $root.SendCommand">Salvar</button>
+            <a class="btn btn-default" href="~/Book/Index">Cancelar</a>
+        </div>
+    </form>
+</div>
